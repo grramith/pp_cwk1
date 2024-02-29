@@ -1,18 +1,18 @@
 #include <stdio.h>
 
-// Definition fo the constants using the characters in the maze game
+// Defining the maze games constant using what was given in the brief
 #define Wall '#'
 #define Path ' '
 #define Start 'S'
 #define Exit 'E'
 
-// Definition of Maximum and Minimum boundaries of the maze
-#define Max_height 100
-#define Min_height 5
-#define Max_width 100
-#define Min_width 5
+// Defining the max and min of the games boundaries
+#define Max_Height 100
+#define Min_Height 5
+#define Max_Width 100
+#define Min_Width 5
 
-// Enum to declare/represent the directions
+// Enum in order to declare the directions of the player's movement (later on in the code WASD wil be introduced)
 typedef enum {
     Up,
     Down,
@@ -20,26 +20,26 @@ typedef enum {
     Right
 } Direction;
 
-// Struct to represent the overall structure of the Maze
+// A single struct that encapsulates the overall general structure of the maze game
 typedef struct {
-    char grid[Max_height][Max_width];
+    char grid[Max_Height][Max_Width];
     int height;
     int width;
-    int playerRow;
-    int playerCol;
+    int PlayerRow;
+    int PlayerCol;
 } Maze;
 
-// Function in order to allow the maze file to load
+// Function which allows the executable maze file to load
 Maze LoadMazeFile(const char *filename);
 
-// Function for player movement
+// Function allowing player movement
 void PlayerMovement(Maze *maze, Direction direction);
 
-// Function displaying map with players current location
+// Function depicting the map of the maze
 void DisplayMap(const Maze *maze);
 
-// Function to check if player has won the game
-int CheckWin(const Maze *maze);
+// Function to identify whether the user has won/completed the maze
+int WinCheck(const Maze *maze);
 
 // Main function
 int main(int argc, char *argv[]) {
@@ -48,20 +48,21 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Load maze from file
+    // Load maze from the file using the pre-defined function
     Maze maze = LoadMazeFile(argv[1]);
 
     // Main game loop
-    while (!CheckWin(&maze)) {
+    while (!WinCheck(&maze)) {
         // Display map
         DisplayMap(&maze);
 
-        // Get user input for movement
+        // Recieve User input (scanf) for movement
         printf("Enter movement (WASD, M to view map): ");
         char input;
         scanf(" %c", &input);
 
-        // Move player
+        // In order to move the user function defined- PlayeMovement needs to be used
+        // Up - W, Down - S, Right - D, Left - A, we are assinging the terms with keyboard characters
         switch (input) {
             case 'W':
             case 'w':
@@ -93,26 +94,26 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-// Function to load maze from file
+// Function allowing to load maze from file
 Maze LoadMazeFile(const char *filename) {
-    // Implement loading maze from file
+    // Implementation of loading maze from file
     // Placeholder return
     Maze maze;
     return maze;
 }
 
-// Function to move player
+// Function allowing to move the user
 void PlayerMovement(Maze *maze, Direction direction) {
-    // Implement player movement
+    // Implementation of player movement
 }
 
-// Function to display map with player's current location
+// Function which displays the map, but also at the same time indicating the present location of the user at that point in time
 void DisplayMap(const Maze *maze) {
-    // Implement displaying map
+    // Implementation of displaying map
 }
 
-// Function to check if player has won the game
-int CheckWin(const Maze *maze) {
-    // Implement win condition check
+// Function allowing to check if player has won/completed the game
+int WinCheck(const Maze *maze) {
+    // Implementation win requiremnt check
     return 0; // Placeholder
 }
